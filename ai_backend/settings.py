@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'api',
+    'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +124,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # If Flutter web runs locally
+    "http://127.0.0.1:8000",  # If Flutter mobile app runs locally
+]
+INSTALLED_APPS.append('corsheaders')
+MIDDLEWARE.insert(1, 'corsheaders.middleware.CorsMiddleware')
