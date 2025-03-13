@@ -5,4 +5,5 @@ urlpatterns = [
     path('transcribe_audio/', transcribe_audio, name='transcribe_audio'),
     path('ocr_image/', ocr_image, name='ocr_image'),
     path('transcriptions/', get_transcriptions, name='get_transcriptions'),
+    
 ]
