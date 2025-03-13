@@ -11,6 +11,9 @@ from django.core.files.storage import default_storage
 from .models import Transcription
 from paddleocr import PaddleOCR
 
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import permission_classes
+
 from .serializers import TranscriptionSerializer
 
 # Define storage path
@@ -20,6 +23,7 @@ AUDIO_UPLOAD_FOLDER = "media/uploads/audio/"
 os.makedirs(AUDIO_UPLOAD_FOLDER, exist_ok=True)
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])  # Require login
 def transcribe_audio(request):
     """Convert uploaded audio file to text and save it to a folder."""
     print("✅ Received speech-to-text request")
@@ -90,6 +94,7 @@ IMAGE_UPLOAD_FOLDER = "media/uploads/images/"
 ocr = PaddleOCR(lang='en')
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])  # Require login
 def ocr_image(request):
     """Extract text from an uploaded image using PaddleOCR."""
     print("✅ Received OCR request")
