@@ -1,10 +1,10 @@
 {
   "builds": [
     {
-      "src": "manage.py",
+      "src": "ai_backend.wsgi.app",
       "use": "@vercel/python",
       "config": {
-        "zeroConfig": true
+        "maxLambdaSize": "15mb", "runtime": "python3.9" 
       }
     }
   ],
